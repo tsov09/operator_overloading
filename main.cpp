@@ -23,15 +23,34 @@ public:
 	void f() {
 		std::cout << "in f " << this->x << " " << this->y << std::endl;
 	}
+
+	void print_lvalue(A obj) {
+		std::cout << "lvalue " << obj.x << std::endl;
+	}
+	void print_lvalue_ref(A& obj) {
+		std::cout << "lvalue reference " << obj.x << std::endl;
+	}
+	void print_const_lvalue_ref(const A & obj) {
+		std::cout << "const lvalue reference " << obj.x << std::endl;
+	}
+	void print_rvalue_ref(A&& obj) {
+		std::cout << "rvalue reference " << obj.x << std::endl;
+	}
+	void print_const_rvalue_ref(const A&& obj) {
+		std::cout << "const rvalue reference " << obj.x << std::endl;
+	}
 private:
 	int x, y;
 };
 
+
 int main() {
-	A ptr(4,4);
-	A ptr_1(7,7);
-	(++ptr).f();
-	std::cout << std::endl;
-	(ptr_1++).f();
-	return 0;
+
+	A ptr(4, 4);
+	ptr.print_lvalue(ptr);
+	ptr.print_lvalue_ref(ptr);
+	ptr.print_const_lvalue_ref(ptr);
+	//ptr.print_rvalue_ref(ptr);
+	//ptr.print_const_rvalue_ref(ptr);
+
 }
